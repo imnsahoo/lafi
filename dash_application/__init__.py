@@ -40,7 +40,7 @@ def create_dash_application(flask_app,final_xgb_pred_w_date,final_dtree_pred_w_d
         Input(component_id='dpdn2', component_property='value'),
     )
     def update_graph(Date_Choosen):
-        dff = df[df.country.isin(Date_Choosen)]
+        dff = df[df.Date.isin(Date_Choosen)]
         fig = px.line(data_frame=dff, x='Date', y='Working hour', color='',
                     custom_data=['Date', 'Working hour', ])
         fig.update_traces(mode='lines+markers')
@@ -66,7 +66,7 @@ def create_dash_application(flask_app,final_xgb_pred_w_date,final_dtree_pred_w_d
             # print(hov_data['points'][0]['customdata'][0])
             # print(f'click data: {clk_data}')
             # print(f'selected data: {slct_data}')
-            dff2 = df[df.country.isin(country_chosen)]
+            dff2 = df[df.Date.isin(country_chosen)]
             hov_year = hov_data['points'][0]['x']
             dff2 = dff2[dff2.Date == hov_year]
             fig2 = px.pie(data_frame=dff2, values='pop', names='', title=f' {hov_year}')
